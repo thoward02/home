@@ -22,7 +22,8 @@ class OpenerScene{
       window.requestAnimationFrame(window.animate);
       //Check For Changes
 
-
+      this.cube.rotation.z += 0.01; //To ensure the cube isnt frozen
+      this.cube.rotation.x += 0.2;
       //Render
       this.renderer.render(this.scene, this.camera);
 
