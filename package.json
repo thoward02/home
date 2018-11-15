@@ -1,0 +1,14 @@
+{
+  "name": "jsgame",
+  "version": "0.0.1",
+  "description": "A game for a kid's project",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "thoward02",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^3.0.6"
+  }
+}
