@@ -4,8 +4,7 @@
   "description": "The Virtual Home For Us",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
-    ".": "electron ."
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
@@ -14,6 +13,7 @@
   "author": "Thoward02",
   "license": "MIT",
   "dependencies": {
-    "electron": "^3.0.9"
+    "electron": "^3.0.9",
+    "express": "^4.16.4"
   }
 }
