@@ -8,6 +8,7 @@ function On_Ready(){
   //Set up Scene
   console.log("[ -- Setting up Renderer -- ]");
   SetUpRenderer();
+  
   console.log("[ -- Setting up Scene -- ]");
   SetUpScene();
 

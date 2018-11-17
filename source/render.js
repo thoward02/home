@@ -1,7 +1,7 @@
 //Render.js
 
 function SetUpRenderer(){
-  //Set up WebGLRenderer
+//Set up WebGLRenderer
   window.renderer = new THREE.WebGLRenderer(); //Window so it can be accessed through out the script
 
   //Set size and append it
@@ -13,7 +13,9 @@ function SetUpRenderer(){
 function AnimationLoop(){
   //Load next frame
   window.requestAnimationFrame(AnimationLoop);
-  //Check For Changes
+
+  //Check For Controls
+  controls.update();
 
   //Render
   window.renderer.render(scene, camera);
