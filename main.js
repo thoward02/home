@@ -19,6 +19,9 @@ var fs = require("fs");
 *
 *  protocol://host/ = Main Page
 *
+*  -- Commands --
+*  app.get(PathOnServer, FunctionToBeRan(usersrequest, responsetobesent); // when ever the server gets a "GET" request, the server will check and see if the path declared before matches what you declared in your script
+*
 **/
 
 //Home Page
@@ -52,49 +55,16 @@ app.get("/playhome/", function(request, response){
 *
 **/
 
-//Inflate.min.js -- used for FBXLoader
-app.get("/source/Inflate.min.js", function(request, response){
-  //Load File
-  fs.readFile("./source/Inflate.min.js", function(err, data){
-    if(err){
-      console.log("[ -- User hit Err: "+err+", While Loading Inflate.min.js-- ]");
-    }else{
-      response.end(data);
-    }
-  });
-});
+//For Loading Core System Files files from ./source
+app.get("/source/q&=:file", function(request, response){
+  //Fetch File
+  var File = request.params.file;
+  var FilePath = "./source/"+File;
 
-
-//Load the main script that powers the game
-app.get("/source/main.js", function(request, response){
   //Load File
-  fs.readFile("./source/main.js", function(err, data){
+  fs.readFile(FilePath, function(err, data){
     if(err){
-      console.log("[ -- User hit Err: "+err+", While Loading main.js-- ]");
-    }else{
-      response.end(data);
-    }
-  });
-});
-
-//Load the model handler
-app.get("/source/models.js", function(request, response){
-  //Load File
-  fs.readFile("./source/models.js", function(err, data){
-    if(err){
-      console.log("[ -- User hit Err: "+err+", While Loading model.js-- ]");
-    }else{
-      response.end(data);
-    }
-  });
-});
-
-//load the renderer handler
-app.get("/source/render.js", function(request, response){
-  //Load File
-  fs.readFile("./source/render.js", function(err, data){
-    if(err){
-      console.log("[ -- User hit Err: "+err+", While Loading render.js-- ]");
+      console.log("[ -- User hit Err: "+err+", While Loading "+ FilePath +"-- ]");
     }else{
       response.end(data);
     }
@@ -108,8 +78,7 @@ app.get("/resources/models/q&=:scene/q&=:model", function(request, response){
   var model = request.params.model;
   var scene = request.params.scene;
   var pathing = "./source/"+ String(scene) +"/models/"+ String(model) +".fbx";
-
-  console.log('[ -- User Requested Model: '+ model +' -- ]');
+  
   //Fetch File and return it
   fs.readFile(pathing, function(err, data){
     if(err){
@@ -129,12 +98,16 @@ app.get("/resources/models/q&=:scene/q&=:model", function(request, response){
 *
 **/
 
-//intro scene
-app.get("/source/introscene/introscene.js", function(request,response){
+//Load Core Scene Files
+app.get("/source/q&=:scene/q&=:file", function(request ,response){
+  //Fetch File names
+  var scene = request.params.scene;
+  var file = request.params.file;
+
   //Load File
-  fs.readFile("./source/introscene/introscene.js", function(err, data){
+  fs.readFile("./source/"+ scene +"/"+ file +"", function(err, data){
     if(err){
-      console.log("[ -- User hit Err: "+err+", While Loading introscene/introscene.js-- ]");
+      console.log("[ -- User hit Err: "+err+", While Loading "+ scene +"/"+  file  +"-- ]");
     }else{
       response.end(data);
     }
@@ -147,7 +120,11 @@ app.get("/source/introscene/introscene.js", function(request,response){
 
 //If req outside bounds stated here, return to home page
 app.get("*", function(request, response){
-  console.log("[-- User Attempted To Load Unindexed Command : Unindexed Command = "+String(request.url)+" --]")
+  if(String(request.url) != "/favicon.ico"){
+    //Chrome trys to get websites to include icons to represent their sites. Since the icon is accessed with an http req this function picks it up
+    //Basically the if statements stops clutter in the server log
+    console.log("[-- User Attempted To Load Unindexed Command : Unindexed Command = "+String(request.url)+" --]")
+  }
 
   //Will catch any unindexed get requests
   response.redirect("/"); //return home
