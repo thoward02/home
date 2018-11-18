@@ -14,34 +14,38 @@ function LoadModels(ModelsToBeLoaded){
     var PathName = "/resources/models/q&="+model.scene+"/q&="+model.name
 
     //Load Model
-    window.loader.load(
-      
-      PathName,
-
-      function(mod){
-        //Set Name
-        mod.name = model.name;
-        //Set Shadows
-        mod.receiveShadow = true;
-        mod.castShadow = true;
-
-        //Set Position
-        mod.position.x = model.x;
-        mod.position.y = model.y;
-        mod.position.z = model.z;
-        console.log("MOD" + mod.name +"  Mod pos "+mod.position.y);
-
-        //Add Object to Scene
-        window.scene.add( mod );
-      },
-
-      undefined,
-
-      function(err){
-        console.log("[ --  Err when loading model: "+err+" -- ]");
-      }
-
-    );
+    InitLoad(model, PathName);
 
   }
+}
+
+function InitLoad(model, PathName){
+  window.loader.load(
+
+    PathName,
+
+    function(mod){
+      //Set Name
+      mod.name = model.name;
+      
+      //Set Shadows
+      mod.receiveShadow = true;
+      mod.castShadow = true;
+
+      //Set Position
+      mod.position.x = model.x;
+      mod.position.y = model.y;
+      mod.position.z = model.z;
+
+      //Add Object to Scene
+      window.scene.add( mod );
+    },
+
+    undefined,
+
+    function(err){
+      console.log("[ --  Err when loading model: "+err+" -- ]");
+    }
+
+  );
 }

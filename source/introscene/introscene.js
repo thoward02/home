@@ -9,6 +9,8 @@ function SetUpScene(){
   window.camera.position.set( 0, 20, 100 );
 
   //Set up  light
+  var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+  window.scene.add( light );
   var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
   window.scene.add( directionalLight );
 
@@ -37,6 +39,14 @@ function StartModelLoad(){
         "x" : 0,
         "y" : -100,
         "z" : 0
+      },
+      "Table" : {
+        "scene" : "introscene",
+        "name" : "table",
+        "x" : 0,
+        "y" : 10,
+        "z" : 0
+
       }
     }
   );
