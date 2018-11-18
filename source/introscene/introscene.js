@@ -4,9 +4,10 @@ x = 10;
 function SetUpScene(){
 
   //Set Scene and camera
+  var NEAR = 1e-6, FAR = 1e27;
   window.scene = new THREE.Scene();
-  window.camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 0.1, 1000 );
-  window.camera.position.set( 0, 20, 100 );
+  window.camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, FAR );
+  window.camera.position.set( 0, 20, 1000 );
 
   //Set up  light
   var light = new THREE.AmbientLight( 0x404040 ); // soft white light
@@ -37,14 +38,23 @@ function StartModelLoad(){
         "scene" : "introscene",
         "name"  : "floor",
         "x" : 0,
-        "y" : -100,
+        "y" : -60,
         "z" : 0
       },
       "Table" : {
         "scene" : "introscene",
         "name" : "table",
         "x" : 0,
-        "y" : 10,
+        "y" : 9,
+        "z" : 0
+
+      },
+      "Building" : {
+        "scene" : "introscene",
+        "name" : "building",
+        "doublesided" : "true",
+        "x" : 0,
+        "y" : -70,
         "z" : 0
 
       }

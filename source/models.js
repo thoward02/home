@@ -27,11 +27,17 @@ function InitLoad(model, PathName){
     function(mod){
       //Set Name
       mod.name = model.name;
-      
+
       //Set Shadows
       mod.receiveShadow = true;
       mod.castShadow = true;
 
+      //Check if doublesided
+      if(model.doublesided){
+        //How you see the model
+        //0 = outside, 1 = inside, 2 = both
+        mod.children["0"].material.side = 2;
+      }
       //Set Position
       mod.position.x = model.x;
       mod.position.y = model.y;
