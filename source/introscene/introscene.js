@@ -1,6 +1,6 @@
 //Intro scene
 
-x = 10;
+
 function SetUpScene(){
 
   //Set Scene and camera
@@ -8,18 +8,37 @@ function SetUpScene(){
   window.scene = new THREE.Scene();
   window.camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, FAR );
   window.camera.position.set( 0, 20, 1000 );
-
-  //Set up  light
-  var light = new THREE.AmbientLight( 0x404040 ); // soft white light
-  window.scene.add( light );
-  var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-  window.scene.add( directionalLight );
+  window.clock = new THREE.Clock();
 
   //Set Up Controls for later
-  controls = new THREE.OrbitControls(window.camera);
+  window.camera.lookAt(new THREE.Vector3(0, 0, 0));
+  controls = new THREE.PointerLockControls(window.camera);
+  controls.lock();
+  //Set up  light
+  LoadLights();
+
 
   //Start loading in models
   StartModelLoad();
+}
+
+
+function LoadLights(){
+  //Give us some basic lighting across the scene
+
+  //Basic Sun
+  var sun = new THREE.DirectionalLight( 0xFDB813, 0.3 );
+  sun.name = "sun";
+  sun.position.x = -10;
+  sun.position.y = 5;
+  window.scene.add(sun);
+
+  //Lamp light
+  var lamp = new THREE.PointLight(0xABFFEF, 0.25, -1, 2); //PARAMS | Colour, intensity, direction (- is down), decay
+  lamp.name = "SkyLamp";
+  lamp.position.y = 450;
+  lamp.castShadow = true;
+  window.scene.add(lamp);
 }
 
 function StartModelLoad(){
@@ -27,11 +46,11 @@ function StartModelLoad(){
   //Call to models.js to load a model from a like
   LoadModels(
     {
-      "TestBall" : {
+      "Cup" : {
         "scene" : "introscene",
         "name" : "model",
-        "x" : 0,
-        "y" : 10,
+        "x" : 10,
+        "y" : 11,
         "z" : 0
       },
       "Floor" : {
@@ -45,7 +64,7 @@ function StartModelLoad(){
         "scene" : "introscene",
         "name" : "table",
         "x" : 0,
-        "y" : 9,
+        "y" : 13,
         "z" : 0
 
       },
@@ -60,4 +79,29 @@ function StartModelLoad(){
       }
     }
   );
+}
+
+
+function FindPosition(x, y, z){
+  /**
+  *
+  * Since 3js is so different from other renderers, this function is designed to help you understand spacial awareness. Just call it and give it an x y z cordinate and it'll place a block at said cordinate
+  *
+  **/
+
+  //Create Box
+  var geometry = new THREE.BoxGeometry( 10, 10, 10);
+
+  //Colour it
+  var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+
+  //Create Mesh and position it
+  var cube = new THREE.Mesh( geometry, material );
+  cube.position.x = x;
+  cube.position.y = y;
+  cube.position.z = z;
+
+
+  window.scene.add(cube);
+
 }

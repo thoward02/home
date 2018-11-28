@@ -14,8 +14,8 @@ function AnimationLoop(){
   window.requestAnimationFrame(AnimationLoop);
 
   //Check For Controls
-  controls.update();
-
+  UpdateMovements();
+  
   //Render
   window.renderer.render(scene, camera);
 }

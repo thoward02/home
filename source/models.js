@@ -38,6 +38,7 @@ function InitLoad(model, PathName){
         //0 = outside, 1 = inside, 2 = both
         mod.children["0"].material.side = 2;
       }
+      
       //Set Position
       mod.position.x = model.x;
       mod.position.y = model.y;
