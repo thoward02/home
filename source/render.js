@@ -12,10 +12,8 @@ function SetUpRenderer(){
 function AnimationLoop(){
   //Load next frame
   window.requestAnimationFrame(AnimationLoop);
-
   //Check For Controls
-  UpdateMovements();
-  
+
   //Render
-  window.renderer.render(scene, camera);
+  window.renderer.render(window.scene, window.camera);
 }

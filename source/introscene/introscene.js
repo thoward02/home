@@ -11,9 +11,8 @@ function SetUpScene(){
   window.clock = new THREE.Clock();
 
   //Set Up Controls for later
-  window.camera.lookAt(new THREE.Vector3(0, 0, 0));
-  controls = new THREE.PointerLockControls(window.camera);
-  controls.lock();
+  window.camera.lookAt(new THREE.Vector3(1, 0, 0));
+  window.controls = new THREE.PointerLockControls(window.camera);
   //Set up  light
   LoadLights();
 
