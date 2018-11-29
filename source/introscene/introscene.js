@@ -7,12 +7,15 @@ function SetUpScene(){
   var NEAR = 1e-6, FAR = 1e27;
   window.scene = new THREE.Scene();
   window.camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, FAR );
-  window.camera.position.set( 0, 20, 1000 );
   window.clock = new THREE.Clock();
 
   //Set Up Controls for later
-  window.camera.lookAt(new THREE.Vector3(1, 0, 0));
   window.controls = new THREE.PointerLockControls(window.camera);
+
+  //Add camera and controls
+  window.scene.add(window.controls.getObject());
+  window.controls.getObject().position.set( 0, 20, 1000 );
+
   //Set up  light
   LoadLights();
 
@@ -26,7 +29,7 @@ function LoadLights(){
   //Give us some basic lighting across the scene
 
   //Basic Sun
-  var sun = new THREE.DirectionalLight( 0xFDB813, 0.3 );
+  var sun = new THREE.DirectionalLight(0xFDB813, 0.3 );
   sun.name = "sun";
   sun.position.x = -10;
   sun.position.y = 5;
