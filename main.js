@@ -131,7 +131,7 @@ app.get("*", function(request, response){
 });
 
 //Start app on port 80, local host
-app.listen("80", "127.0.0.1", function(){
+app.listen("8080", "10.129.11.2", function(){
 
   console.log("[-- Started --]");
 
