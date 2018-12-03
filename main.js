@@ -132,8 +132,8 @@ app.get("*", function(request, response){
 
 
 /** For open shift **/
-var Port = process.env.OPENSHIFT_NODEJS_PORT || 80
-var Ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+var Port = process.env.OPENSHIFT_NODEJS_PORT
+var Ip = process.env.OPENSHIFT_NODEJS_IP 
 //Start app on port 80, local host
 app.listen(Port, Ip, function(){
 
