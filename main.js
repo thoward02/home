@@ -27,7 +27,7 @@ var fs = require("fs");
 //Home Page
 app.get("/", function(request, response){
   console.log("[ -- User Went To Home Page -- ]");
-  response.end("<html>TEST</html>"); //I'll fix this with a main page later
+  response.end("<html>TEST | PLay on 127.0.0.1/PlayHome  C:</html>"); //I'll fix this with a main page later
 });
 
 
@@ -130,13 +130,16 @@ app.get("*", function(request, response){
   response.redirect("/"); //return home
 });
 
-
-/** For open shift **/
+/**
+Open Shift
 var Port = process.env.OPENSHIFT_NODEJS_PORT
-var Ip = process.env.OPENSHIFT_NODEJS_IP 
+var Ip = process.env.OPENSHIFT_NODEJS_IP
+**/
+var Port = 80;
+var Ip = "127.0.0.1";
 //Start app on port 80, local host
 app.listen(Port, Ip, function(){
 
-  console.log("[-- Started --]");
+  console.log("[-- Started on  127.0.0.1/PlayHome --]");
 
 });
