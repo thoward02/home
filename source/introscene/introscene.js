@@ -14,7 +14,9 @@ function SetUpScene(){
 
   //Add camera and controls
   window.scene.add(window.controls.getObject());
-  window.controls.getObject().position.set( 0, 20, 1000 );
+  window.player = window.controls.getObject();
+
+  SetUpControls();
 
   //Set up  light
   LoadLights();
@@ -22,6 +24,7 @@ function SetUpScene(){
 
   //Start loading in models
   StartModelLoad();
+
 }
 
 
@@ -33,6 +36,7 @@ function LoadLights(){
   sun.name = "sun";
   sun.position.x = -10;
   sun.position.y = 5;
+  sun.castShadow = true;
   window.scene.add(sun);
 
   //Lamp light
