@@ -12,8 +12,15 @@ function SetUpRenderer(){
 function AnimationLoop(){
   //Load next frame
   window.requestAnimationFrame(AnimationLoop);
-  //Check For Controls
 
-  //Render
-  window.renderer.render(window.scene, window.camera);
+  //If user is not playing we don't want to animate the scene
+
+  //If the user is playing we want to animate the scene
+  if(window.GAMEINFO.paused == false){
+    //Check For Controls
+    UpdateMovements();
+
+    //Render
+    window.renderer.render(window.scene, window.camera);
+  }
 }
