@@ -32,24 +32,19 @@ function LoadLights(){
   //Give us some basic lighting across the scene
 
   //Basic Sun
-  var sun = new THREE.DirectionalLight(0xFDB813, 0.3 );
-  sun.name = "sun";
-  sun.position.x = -10;
-  sun.position.y = 5;
-  sun.castShadow = true;
-  window.scene.add(sun);
+  var Sun = new Lighting("Sun", 0, 0.3, 0xe6ae0f, -10, 5, 0, null, null)
+  window.scene.add(Sun.object);
 
   //Lamp light
-  var lamp = new THREE.PointLight(0xABFFEF, 0.25, -1, 2); //PARAMS | Colour, intensity, direction (- is down), decay
-  lamp.name = "SkyLamp";
-  lamp.position.y = 450;
-  lamp.castShadow = true;
-  window.scene.add(lamp);
+  var Lamp = new Lighting("SkyLamp", 1, 0.25, 0xABFFEF, 0, 450, 0, -1, 2);
+
+  window.scene.add(Lamp.object);
 }
 
 function StartModelLoad(){
 
   //Call to models.js to load a model from a like
+  //name == filename
   LoadModels(
     {
       "Cup" : {
