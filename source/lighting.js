@@ -3,13 +3,14 @@
 /**
 *
 * lighting class - x = new lighting(name, type, power, colour, pos, direction, intesnity);
-* @param {string} name = name of object
-* @param {int} type = 1 - 9 The type of lighting we will be using
-* @param {int} power = 1 - 99 The level at which the light emmits, 1 = min, 99 = max
-* @param {hex} colour = a hex colour, example 0xFFFFFF
-* @param {object} pos = pos.x = (x location), pos.y = (y location), pos.z = (z location)
-* @param {int} direction = null if none, + for up, - for down
-* @param {int} intensity = null if none, 99++ max, 0 none?
+*
+* @param {string} name      = name of object
+* @param {int}    type      = 1 - 9 The type of lighting we will be using
+* @param {int}    power     = 1 - 99 The level at which the light emmits, 1 = min, 99 = max
+* @param {hex}    colour    = a hex colour, example 0xFFFFFF
+* @param {object} pos       = pos.x = (x location), pos.y = (y location), pos.z = (z location)
+* @param {int}    direction = null if none, + for up, - for down
+* @param {int}    intensity = null if none, 99++ max, 0 none?
 **/
 
 class Lighting{
