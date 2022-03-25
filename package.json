@@ -13,7 +13,7 @@
   "author": "Thoward02",
   "license": "MIT",
   "dependencies": {
-    "electron": "^3.0.9",
+    "electron": "^13.6.6",
     "express": "^4.16.4"
   }
 }
